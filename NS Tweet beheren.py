@@ -5,8 +5,8 @@ from TwitterAPI import TwitterAPI
 def hoofdmenu():
     labelbericht = Label(master=root,   #Menu met tekst
               text= tweetcontrole(),    #Gaat naar de functie tweetcontrole
-              width=100,
-              height=50,)
+              width=40,
+              height=30,)
     labelbericht.pack()
 
     button = Button(master=root,    #Ja knop
@@ -76,7 +76,7 @@ def neepopup():
 def tweetgoedkeuren():
     queue = 'queue.csv'
     goedgekeurd = 'goedgekeurd.csv'
-    lijst = {}
+    lijst = []
     with open(queue, "r") as csvfile:   #opent queue.csv
         berichtreader = csv.reader(csvfile, delimiter=";")
         for line in berichtreader:  #leest de eerste zin uit queue.csv
@@ -97,11 +97,16 @@ def tweetgoedkeuren():
     with open(queue, "r") as csvfile:   #opent queue.csv
         berichtreader2 = csv.reader(csvfile, delimiter=";")
         for row in berichtreader2:
-            lijst['tijd']=row[0]
-            lijst['tweet']=row[1]
-            print(lijst)
+            lijst.append(row[0]+';'+row[1]+';'+row[2]+';'+row[3])
+        del lijst[-1]
     csvfile.close()
+    thefile = open('queue.csv', 'w')
+    for item in lijst:
+        thefile.write("%s\n" % item)
+    thefile.close()
+
 def tweetafkeuren():
+    lijst = []
     queue = 'queue.csv'
     afgekeurd = 'afgekeurd.csv'
     with open(queue, "r") as csvfile:   #opent queue.csv
@@ -112,6 +117,16 @@ def tweetafkeuren():
     with open(afgekeurd, 'a', newline='') as csvfile:   #opent afgekeurd.csv
         berichtwriter = csv.writer(csvfile, delimiter=';')
         berichtwriter.writerow(tekst)   #schrijft de eerste zin uit queue.csv in afgekeurd.csv
+    with open(queue, "r") as csvfile:   #opent queue.csv
+        berichtreader2 = csv.reader(csvfile, delimiter=";")
+        for row in berichtreader2:
+            lijst.append(row[0]+';'+row[1]+';'+row[2]+';'+row[3])
+        del lijst[-1]
+    csvfile.close()
+    thefile = open('queue.csv', 'w')
+    for item in lijst:
+        thefile.write("%s\n" % item)
+    thefile.close()
 
 root = Tk()
 hoofdmenu()
