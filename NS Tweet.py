@@ -3,6 +3,13 @@ import time
 import datetime
 from tkinter import *
 from tkinter.messagebox import showinfo
+import sys
+import os
+
+def AIDS():
+    entrybericht.delete(0, END)
+    entrynaam.delete(0, END)
+    entrywoonplaats.delete(0, END)
 
 def berichtcontrole():
     bericht = entrybericht.get()
@@ -21,6 +28,7 @@ def berichtcontrole():
             berichtwriter = csv.writer(csvfile, delimiter=';')
             berichtwriter.writerow((s, bericht, naam, woonplaats))
         csvfile.close()
+        AIDS()
 
 
 root = Tk()
@@ -34,7 +42,7 @@ entrybericht = Entry(master=root)
 entrybericht.pack(pady=10)
 
 labelnaam = Label(master=root,
-              text="Geef hier u voornaam op (optioneel)",
+              text="Geef hier uw voornaam op (optioneel)",
               width=40,
               height=1,)
 labelnaam.pack()
@@ -47,7 +55,7 @@ def jemoederskut():
     return tering
 
 labelwoonplaats = Label(master=root,
-              text="Geef hier u woonplaats op (optioneel)",
+              text="Geef hier uw woonplaats op (optioneel)",
               width=40,
               height=1,)
 labelwoonplaats.pack()
