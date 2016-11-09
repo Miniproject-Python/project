@@ -1,4 +1,5 @@
 import csv
+import time
 import datetime
 from tkinter import *
 from tkinter.messagebox import showinfo
@@ -7,10 +8,10 @@ def berichtcontrole():
     bericht = entrybericht.get()
     naam = entrynaam.get()
     woonplaats = entrywoonplaats.get()
-    if len(bericht) > 140 or len(bericht) <= 0:
+    if len(bericht + naam + woonplaats) > 140 or len(bericht + naam + woonplaats) <= 0:
         popup = "Sorry, uw bericht dient maximaal 140 karakters en minimaal 1 te bevatten."
         showinfo(title="Error", message=popup)
-    if len(bericht) > 0 and len(bericht) <= 140:
+    if len(bericht + naam + woonplaats) > 0 and len(bericht + naam + woonplaats) <= 140:
         popup = "Uw bericht is verzonden"
         showinfo(title="Verzonden", message=popup)
         vandaag = datetime.datetime.today()
@@ -21,9 +22,11 @@ def berichtcontrole():
             berichtwriter.writerow((s, bericht, naam, woonplaats))
         csvfile.close()
 
+
 root = Tk()
+
 labelbericht = Label(master=root,
-              text="Geef hier uw mening (max. 140 karakters)",
+              text="Geef hier uw mening",
               width=40,
               height=1,)
 labelbericht.pack()
@@ -38,6 +41,11 @@ labelnaam.pack()
 entrynaam = Entry(master=root)
 entrynaam.pack(pady=10)
 
+def jemoederskut():
+    naam = entrynaam.get()
+    tering = len(naam)
+    return tering
+
 labelwoonplaats = Label(master=root,
               text="Geef hier u woonplaats op (optioneel)",
               width=40,
@@ -45,6 +53,12 @@ labelwoonplaats = Label(master=root,
 labelwoonplaats.pack()
 entrywoonplaats = Entry(master=root)
 entrywoonplaats.pack(pady=10)
+
+labelcounter = Label(master=root,
+                     text="Pas op u mag niet meer dan 140 characters gebruiken",
+                     width=90,
+                     height=1,)
+labelcounter.pack()
 
 button = Button(master=root,
                 text="Verzend bericht",

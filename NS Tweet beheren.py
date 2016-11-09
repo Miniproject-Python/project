@@ -1,11 +1,12 @@
 import csv
 from tkinter import *
+from TwitterAPI import TwitterAPI
 
 def hoofdmenu():
     labelbericht = Label(master=root,   #Menu met tekst
               text= tweetcontrole(),    #Gaat naar de functie tweetcontrole
-              width=50,
-              height=8,)
+              width=100,
+              height=50,)
     labelbericht.pack()
 
     button = Button(master=root,    #Ja knop
@@ -23,7 +24,8 @@ def tweetcontrole():    #leest de eerste zin uit de file queue.csv
     with open(queue, "r") as csvfile:
         berichtreader = csv.reader(csvfile, delimiter=';')
         for line in berichtreader:
-            return "Datum en Tijd: " + line [0] + "\n" + "De tweet: " + line[1] + "\n" + "Door: " + line[2] + "\n" + "Uit: " + line[3] #opmaak van het menu
+            test = "Datum en Tijd: " + line [0] + "\n" + "De tweet: " + line[1] + "\n" + "Door: " + line[2] + "\n" + "Uit: " + line[3] #opmaak van het menu
+        return test
         csvfile.close()
     return tweetcontrole()
 
@@ -74,15 +76,31 @@ def neepopup():
 def tweetgoedkeuren():
     queue = 'queue.csv'
     goedgekeurd = 'goedgekeurd.csv'
+    lijst = {}
     with open(queue, "r") as csvfile:   #opent queue.csv
-        berichtreader = csv.reader(csvfile, delimiter=';')
+        berichtreader = csv.reader(csvfile, delimiter=";")
         for line in berichtreader:  #leest de eerste zin uit queue.csv
             tekst = line
     csvfile.close()
     with open(goedgekeurd, 'a', newline='') as csvfile: #opent goedgekeurd.csv
         berichtwriter = csv.writer(csvfile, delimiter=';')
         berichtwriter.writerow(tekst)   #schrijft de eerste zin uit queue.csv in goedgekeurd.csv
+        TWEET_TEXT = line[2] + " uit " + line[3] + " schrijft: " + line[1]
 
+        api = TwitterAPI("6rSzMqwMl7DVUQN5XmlzNJLi8",
+                 "vaNQ2Brdw3WwlHR6OismwvpAfwnJV1f7fwuKz3NXNvkHGDn7Cn",
+                 "795556982086373376-oLNXBLTteO7tD5XTbXmtY35v8G2ILgO",
+                 "iVqBqix17UlaoiU7346BVQrWTQvnE9650nwgF0RKj4770")
+
+        r = api.request('statuses/update', {'status': TWEET_TEXT})
+        print ('SUCCESS' if r.status_code == 200 else 'FAILURE')
+    with open(queue, "r") as csvfile:   #opent queue.csv
+        berichtreader2 = csv.reader(csvfile, delimiter=";")
+        for row in berichtreader2:
+            lijst['tijd']=row[0]
+            lijst['tweet']=row[1]
+            print(lijst)
+    csvfile.close()
 def tweetafkeuren():
     queue = 'queue.csv'
     afgekeurd = 'afgekeurd.csv'
