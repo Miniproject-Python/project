@@ -2,7 +2,6 @@ import csv
 from tkinter import *
 from TwitterAPI import TwitterAPI
 import sys
-import os
 
 def hoofdmenu():
     labelbericht = Label(master=root,   #Menu met tekst
