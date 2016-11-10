@@ -16,19 +16,19 @@ def berichtcontrole():
     naam = entrynaam.get()
     woonplaats = entrywoonplaats.get()
     totaal = bericht + naam + woonplaats
-    if len(bericht) > 104 or len(bericht) <= 0:
-        popup = "Sorry, uw bericht dient minimaal 1 en maximaal 104 karakters te bevatten."
+    if len(bericht) > 124 or len(bericht) <= 0:
+        popup = "Sorry, uw bericht dient minimaal 1 en maximaal 124 karakters te bevatten."
         showinfo(title="Error", message=popup)
-    if len(naam) > 104 or len(naam) <= 0:
-        popup = "Sorry, uw naam dient minimaal 1 en maximaal 104 karakters te bevatten."
+    if len(naam) > 124 or len(naam) <= 0:
+        popup = "Sorry, uw naam dient minimaal 1 en maximaal 124 karakters te bevatten."
         showinfo(title="Error", message=popup)
-    if len(woonplaats) > 104 or len(woonplaats) <= 0:
-        popup = "Sorry, uw woonplaats dient minimaal 1 en maximaal 104 karakters te bevatten."
+    if len(woonplaats) > 124 or len(woonplaats) <= 0:
+        popup = "Sorry, uw woonplaats dient minimaal 1 en maximaal 124 karakters te bevatten."
         showinfo(title="Error", message=popup)
-    if len(totaal) > 104 or len(totaal) <= 0:
-        popup = "Sorry, uw totaal aantal karakters is hoger dan 104."
+    if len(totaal) > 124 or len(totaal) <= 0:
+        popup = "Sorry, uw totaal aantal karakters is hoger dan 124."
         showinfo(title="Error", message=popup)
-    if len(bericht) > 0 and len(bericht) <= 104 and len(naam) > 0 and len(naam) <= 104 and len(woonplaats) > 0 and len(woonplaats) <= 104 and len(totaal) > 0 and len(totaal) <= 104:
+    if len(bericht) > 0 and len(bericht) <= 124 and len(naam) > 0 and len(naam) <= 124 and len(woonplaats) > 0 and len(woonplaats) <= 124 and len(totaal) > 0 and len(totaal) <= 124:
         popup = "Uw bericht is verzonden"
         showinfo(title="Verzonden", message=popup)
         vandaag = datetime.datetime.today()
