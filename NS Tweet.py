@@ -59,11 +59,6 @@ labelnaam.pack()
 entrynaam = Entry(master=root)
 entrynaam.pack(pady=10)
 
-def jemoederskut():
-    naam = entrynaam.get()
-    tering = len(naam)
-    return tering
-
 labelwoonplaats = Label(master=root,
               text="Geef hier uw woonplaats op (optioneel)",
               width=40,
