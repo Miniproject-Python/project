@@ -7,19 +7,19 @@ import os
 def hoofdmenu():
     labelbericht = Label(master=root,   #Menu met tekst
               text= tweetcontrole(),    #Gaat naar de functie tweetcontrole
-              width=40,
-              height=30,)
+              width=85,
+              height=10,)
     labelbericht.pack()
 
     button = Button(master=root,    #Ja knop
                 text="Goedkeuren",
                 command=japopup)    #Gaat naar de functie japopup
-    button.pack(pady=10, side=LEFT)
+    button.place(x=60, y=110)
 
     button = Button(master=root,    #Nee knop
                 text="Afkeuren",
                 command=neepopup)   #Gaat naar de functie neepopup
-    button.pack(pady=10, side=RIGHT)
+    button.place(x=480, y=110)
 
 def tweetcontrole():    #leest de laatste zin uit de file queue.csv
     queue = 'queue.csv'
@@ -44,14 +44,19 @@ def japopup():
               width=15,
               height=2,)
     labelbericht.pack()
+    labelbericht2 = Label(master=subwindow,  #de tekst in de popup
+              text= "",
+              width=15,
+              height=2,)
+    labelbericht2.pack()
     button2 = Button(master=subwindow,
                      text = "Ja",
                      command=goedgekeurdclose)  #roept goedgekeurdclose aan
-    button2.pack(pady=10, side=LEFT)
+    button2.place(x=15, y=35)
     button3 = Button(master=subwindow,
                      text = "Nee",
                      command=close) #roept de functie close aan
-    button3.pack(pady=10, side=RIGHT)
+    button3.place(x=70, y=35)
 
 def neepopup():
     def close():    #sluit de popup
@@ -66,14 +71,19 @@ def neepopup():
               width=15,
               height=2,)
     labelbericht.pack()
+    labelbericht2 = Label(master=subwindow,  #de tekst in de popup
+              text= "",
+              width=15,
+              height=2,)
+    labelbericht2.pack()
     button2 = Button(master=subwindow,
                      text = "Ja",
                      command=afgekeurdclose)    #roept afgekeurdclose aan
-    button2.pack(pady=10, side=LEFT)
+    button2.place(x=15, y=35)
     button3 = Button(master=subwindow,
                      text = "Nee",
                      command=close)     #roept de functie close aan
-    button3.pack(pady=10, side=RIGHT)
+    button3.place(x=70, y=35)
 
 def tweetgoedkeuren():
     queue = 'queue.csv'
@@ -136,4 +146,3 @@ def tweetafkeuren():
 root = Tk()
 hoofdmenu()
 root.mainloop()
-

@@ -6,7 +6,7 @@ from tkinter.messagebox import showinfo
 import sys
 import os
 
-def AIDS():
+def clearbox():
     entrybericht.delete(0, END)
     entrynaam.delete(0, END)
     entrywoonplaats.delete(0, END)
@@ -15,10 +15,20 @@ def berichtcontrole():
     bericht = entrybericht.get()
     naam = entrynaam.get()
     woonplaats = entrywoonplaats.get()
-    if len(bericht + naam + woonplaats) > 140 or len(bericht + naam + woonplaats) <= 0:
-        popup = "Sorry, uw bericht dient maximaal 140 karakters en minimaal 1 te bevatten."
+    totaal = bericht + naam + woonplaats
+    if len(bericht) > 104 or len(bericht) <= 0:
+        popup = "Sorry, uw bericht dient minimaal 1 en maximaal 104 karakters te bevatten."
         showinfo(title="Error", message=popup)
-    if len(bericht + naam + woonplaats) > 0 and len(bericht + naam + woonplaats) <= 140:
+    if len(naam) > 104 or len(naam) <= 0:
+        popup = "Sorry, uw naam dient minimaal 1 en maximaal 104 karakters te bevatten."
+        showinfo(title="Error", message=popup)
+    if len(woonplaats) > 104 or len(woonplaats) <= 0:
+        popup = "Sorry, uw woonplaats dient minimaal 1 en maximaal 104 karakters te bevatten."
+        showinfo(title="Error", message=popup)
+    if len(totaal) > 104 or len(totaal) <= 0:
+        popup = "Sorry, uw totaal aantal karakters is hoger dan 104."
+        showinfo(title="Error", message=popup)
+    if len(bericht) > 0 and len(bericht) <= 104 and len(naam) > 0 and len(naam) <= 104 and len(woonplaats) > 0 and len(woonplaats) <= 104 and len(totaal) > 0 and len(totaal) <= 104:
         popup = "Uw bericht is verzonden"
         showinfo(title="Verzonden", message=popup)
         vandaag = datetime.datetime.today()
@@ -28,7 +38,7 @@ def berichtcontrole():
             berichtwriter = csv.writer(csvfile, delimiter=';')
             berichtwriter.writerow((s, bericht, naam, woonplaats))
         csvfile.close()
-        AIDS()
+        clearbox()
 
 
 root = Tk()
