@@ -52,7 +52,7 @@ entrybericht = Entry(master=root)
 entrybericht.pack(pady=10)
 
 labelnaam = Label(master=root,
-              text="Geef hier uw voornaam op (optioneel)",
+              text="Geef hier uw voornaam op",
               width=40,
               height=1,)
 labelnaam.pack()
@@ -60,7 +60,7 @@ entrynaam = Entry(master=root)
 entrynaam.pack(pady=10)
 
 labelwoonplaats = Label(master=root,
-              text="Geef hier uw woonplaats op (optioneel)",
+              text="Geef hier uw woonplaats op",
               width=40,
               height=1,)
 labelwoonplaats.pack()
@@ -68,7 +68,7 @@ entrywoonplaats = Entry(master=root)
 entrywoonplaats.pack(pady=10)
 
 labelcounter = Label(master=root,
-                     text="Pas op u mag niet meer dan 140 characters gebruiken",
+                     text="Pas op u mag niet meer dan 124 characters gebruiken",
                      width=90,
                      height=1,)
 labelcounter.pack()
